@@ -1,24 +1,26 @@
 #!/bin/bash
 set -e
 
-# Set JavaFX SDK path (macOS)
+# JavaFX path
 JAVAFX_PATH="lib/javafx_mac_binary/javafx-sdk-21.0.11/lib"
 
-# Create bin folder if not exists
 mkdir -p bin
 
-# Compile the application source tree
+# Compile
 javac \
     --module-path "$JAVAFX_PATH" \
     --add-modules javafx.controls,javafx.graphics \
     -d bin \
-    src/com/physicssim/app/PhysicsSimulatorApp.java \
+    src/com/physicssim/app/*.java \
     src/com/physicssim/components/*.java \
     src/com/physicssim/model/*.java \
     src/com/physicssim/theme/*.java \
-    src/com/physicssim/views/*.java
+    src/com/physicssim/views/*.java \
+    src/com/physicssim/navigation/*.java \
+    src/com/physicssim/features/pendulum/*.java \
+    src/com/physicssim/features/simulations/*.java
 
-# Run only if compilation succeeds (because of set -e)
+# Run
 java \
     --module-path "$JAVAFX_PATH" \
     --add-modules javafx.controls,javafx.graphics \
