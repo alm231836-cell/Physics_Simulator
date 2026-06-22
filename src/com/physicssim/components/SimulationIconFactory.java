@@ -1,0 +1,119 @@
+package com.physicssim.components;
+
+import com.physicssim.model.SimulationType;
+import com.physicssim.theme.AppTheme;
+import javafx.scene.Group;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+
+public final class SimulationIconFactory {
+
+    private SimulationIconFactory() {
+    }
+
+    public static StackPane create(SimulationType type) {
+        return switch (type) {
+            case PENDULUM -> createPendulumIcon();
+            case MECHANICS -> createMechanicsIcon();
+            case ORBIT -> createOrbitIcon();
+            case ANALYTICS -> createChartIcon();
+        };
+    }
+
+    private static StackPane createPendulumIcon() {
+        Line topBar = new Line(25, 18, 95, 18);
+        topBar.setStroke(Color.web("#2b3440"));
+        topBar.setStrokeWidth(5);
+
+        Line centerString = new Line(60, 18, 60, 72);
+        centerString.setStroke(Color.web("#2b3440"));
+        centerString.setStrokeWidth(3.5);
+
+        Line leftString = new Line(60, 18, 36, 64);
+        leftString.setStroke(Color.web("#2b3440"));
+        leftString.setStrokeWidth(3.5);
+
+        Line rightString = new Line(60, 18, 84, 64);
+        rightString.setStroke(Color.web("#bfc7cf"));
+        rightString.setStrokeWidth(3.5);
+
+        Circle leftBall = new Circle(36, 64, 8, Color.web("#38424d"));
+        Circle centerBall = new Circle(60, 72, 8, Color.web("#38424d"));
+        Circle rightBall = new Circle(84, 64, 8, AppTheme.ICON_LIGHT);
+
+        return new StackPane(new Group(topBar, centerString, leftString, rightString, leftBall, centerBall, rightBall));
+    }
+
+    private static StackPane createMechanicsIcon() {
+        Circle ball = new Circle(68, 48, 22, AppTheme.ICON_MID);
+        Line ground = new Line(28, 74, 96, 74);
+        ground.setStroke(Color.web("#2b3440"));
+        ground.setStrokeWidth(4);
+
+        Arc motion1 = new Arc(50, 48, 20, 20, 112, 46);
+        motion1.setFill(Color.TRANSPARENT);
+        motion1.setStroke(AppTheme.ICON_MID);
+        motion1.setStrokeWidth(4);
+
+        Arc motion2 = new Arc(42, 48, 30, 30, 115, 34);
+        motion2.setFill(Color.TRANSPARENT);
+        motion2.setStroke(AppTheme.ICON_MID);
+        motion2.setStrokeWidth(3);
+
+        Line trail1 = new Line(20, 42, 30, 42);
+        trail1.setStroke(AppTheme.ICON_MID);
+        trail1.setStrokeWidth(4);
+
+        Line trail2 = new Line(18, 54, 26, 54);
+        trail2.setStroke(AppTheme.ICON_MID);
+        trail2.setStrokeWidth(4);
+
+        return new StackPane(new Group(ball, ground, motion1, motion2, trail1, trail2));
+    }
+
+    private static StackPane createOrbitIcon() {
+        Circle planet = new Circle(60, 52, 22, AppTheme.ICON_MID);
+        Arc ring = new Arc(60, 52, 40, 22, 0, 360);
+        ring.setFill(Color.TRANSPARENT);
+        ring.setStroke(AppTheme.ICON_MID);
+        ring.setStrokeWidth(4);
+        ring.setRotate(-24);
+
+        Circle moon = new Circle(92, 42, 5.5, AppTheme.ICON_MID);
+        moon.setTranslateY(-2);
+
+        return new StackPane(new Group(ring, planet, moon));
+    }
+
+    private static StackPane createChartIcon() {
+        Line yAxis = new Line(28, 20, 28, 78);
+        yAxis.setStroke(AppTheme.ICON_DARK);
+        yAxis.setStrokeWidth(4);
+
+        Line xAxis = new Line(28, 78, 98, 78);
+        xAxis.setStroke(AppTheme.ICON_DARK);
+        xAxis.setStrokeWidth(4);
+
+        Line trend = new Line(38, 62, 52, 44);
+        trend.setStroke(AppTheme.ICON_DARK);
+        trend.setStrokeWidth(4);
+
+        Line trend2 = new Line(52, 44, 66, 58);
+        trend2.setStroke(AppTheme.ICON_DARK);
+        trend2.setStrokeWidth(4);
+
+        Line trend3 = new Line(66, 58, 82, 32);
+        trend3.setStroke(AppTheme.ICON_DARK);
+        trend3.setStrokeWidth(4);
+
+        Circle p1 = new Circle(38, 62, 4.5, AppTheme.ICON_DARK);
+        Circle p2 = new Circle(52, 44, 4.5, AppTheme.ICON_DARK);
+        Circle p3 = new Circle(66, 58, 4.5, AppTheme.ICON_DARK);
+        Circle p4 = new Circle(82, 32, 4.5, AppTheme.ICON_DARK);
+
+        return new StackPane(new Group(yAxis, xAxis, trend, trend2, trend3, p1, p2, p3, p4));
+    }
+}
