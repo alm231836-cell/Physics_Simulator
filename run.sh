@@ -12,12 +12,14 @@ javac \
     src/com/physicssim/app/*.java \
     src/com/physicssim/components/*.java \
     src/com/physicssim/model/*.java \
+    src/com/physicssim/model/electricity/*.java \
     src/com/physicssim/theme/*.java \
     src/com/physicssim/views/*.java \
     src/com/physicssim/navigation/*.java \
     src/com/physicssim/features/pendulum/*.java \
     src/com/physicssim/features/mechanics/*.java \
-    src/com/physicssim/features/simulations/*.java
+    src/com/physicssim/features/simulations/*.java \
+    src/com/physicssim/features/electricity/*.java
 
 # Copy resources
 cp -R src/resources/* bin/
