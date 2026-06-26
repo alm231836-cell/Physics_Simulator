@@ -6,8 +6,13 @@ set JAVAFX_PATH=lib/javafx/lib
 
 if not exist bin mkdir bin
 
+:: Copy resources into bin so CSS and assets are available at runtime
+if exist resources (
+    xcopy resources bin\resources /E /I /Y >nul
+)
+
 :: Compile the application source tree
-javac --module-path "%JAVAFX_PATH%" --add-modules javafx.controls,javafx.graphics -d bin src/com/physicssim/app/*.java src/com/physicssim/components/*.java src/com/physicssim/model/*.java src/com/physicssim/theme/*.java src/com/physicssim/views/*.java src/com/physicssim/navigation/*.java src/com/physicssim/features/pendulum/*.java src/com/physicssim/features/simulations/*.java src/com/physicssim/features/mechanics/*.java
+javac --module-path "%JAVAFX_PATH%" --add-modules javafx.controls,javafx.graphics -d bin src/com/physicssim/app/*.java src/com/physicssim/components/*.java src/com/physicssim/model/*.java src/com/physicssim/theme/*.java src/com/physicssim/views/*.java src/com/physicssim/navigation/*.java src/com/physicssim/features/pendulum/*.java src/com/physicssim/features/simulations/*.java src/com/physicssim/features/mechanics/*.java src/com/physicssim/features/electricity/*.java
 if %errorlevel% neq 0 (
     echo Compilation failed.
     exit /b 1
