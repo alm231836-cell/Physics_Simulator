@@ -17,7 +17,7 @@ public class AboutView extends BorderPane {
         title.setTextFill(AppTheme.TEXT_PRIMARY);
 
         Label body = new Label(
-                "Physics Simulator is being built as a modular JavaFX application.\n"
+                "Physica is being built as a modular JavaFX application.\n"
                         + "Each simulation will live in its own feature package so the team can extend it safely.");
         body.setFont(AppTheme.subtitleFont());
         body.setTextFill(AppTheme.TEXT_SECONDARY);
