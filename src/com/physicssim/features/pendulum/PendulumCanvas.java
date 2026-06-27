@@ -133,8 +133,13 @@ public class PendulumCanvas extends Pane {
 
     private Label createOverlayLabel(String text) {
         Label label = new Label(text);
-        label.setTextFill(Color.BLACK);
-        label.setStyle("-fx-font-size: 11px; -fx-font-weight: 700;");
+        label.setStyle(
+                "-fx-font-size: 11px; "
+                + "-fx-font-weight: 700; "
+                + "-fx-text-fill: #0f1720; "
+                + "-fx-background-color: rgba(248, 251, 255, 0.92); "
+                + "-fx-background-radius: 8; "
+                + "-fx-padding: 3 6;");
         return label;
     }
 }
