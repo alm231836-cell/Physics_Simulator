@@ -22,7 +22,8 @@ javac ^
     src/com/physicssim/features/pendulum/*.java ^
     src/com/physicssim/features/mechanics/*.java ^
     src/com/physicssim/features/simulations/*.java ^
-    src/com/physicssim/features/electricity/*.java
+    src/com/physicssim/features/electricity/*.java ^
+    src/com/physicssim/features/kinematics/*.java
 
 if %errorlevel% neq 0 (
     echo Compilation failed.

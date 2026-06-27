@@ -5,5 +5,6 @@ public enum SimulationType {
     MECHANICS,
     ORBIT,
     ANALYTICS,
-    ELECTRICITY
+    ELECTRICITY,
+    KINEMATICS
 }

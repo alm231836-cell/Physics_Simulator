@@ -1,5 +1,6 @@
 package com.physicssim.navigation;
 
+import com.physicssim.features.kinematics.KinematicsView;
 import com.physicssim.views.AboutView;
 import com.physicssim.views.HelpView;
 import com.physicssim.views.HomeView;
@@ -8,6 +9,8 @@ import java.util.EnumMap;
 import java.util.Map;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 
 public class NavigationController {
 
@@ -40,6 +43,7 @@ public class NavigationController {
         return switch (viewType) {
             case HOME -> new HomeView();
             case SIMULATIONS -> new SimulationsView();
+            case KINEMATICS -> new KinematicsView();
             case ABOUT -> new AboutView();
             case HELP -> new HelpView();
         };

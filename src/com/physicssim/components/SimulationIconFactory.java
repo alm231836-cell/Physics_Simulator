@@ -18,9 +18,11 @@ public final class SimulationIconFactory {
         return switch (type) {
             case PENDULUM -> createPendulumIcon();
             case MECHANICS -> createMechanicsIcon();
+            case KINEMATICS -> createKinematicsIcon();
             case ORBIT -> createOrbitIcon();
             case ANALYTICS -> createChartIcon();
             case ELECTRICITY -> createElectricityIcon();
+            default -> createPendulumIcon();
         };
     }
 
@@ -152,5 +154,39 @@ public final class SimulationIconFactory {
         Circle minus = new Circle(44, 76, 3, AppTheme.ICON_LIGHT);
 
         return new StackPane(new Group(wire1, plate1, plate2, r1, r2, r3, wire2, plus, minus));
+    }
+
+    private static StackPane createKinematicsIcon() {
+        // Kinematics icon: moving ball with velocity/acceleration arrows
+        Circle ball = new Circle(50, 48, 12, AppTheme.ICON_MID);
+
+        // Velocity arrow (right)
+        Line velocityLine = new Line(62, 48, 88, 48);
+        velocityLine.setStroke(AppTheme.ICON_DARK);
+        velocityLine.setStrokeWidth(3);
+        Line velocityArrow1 = new Line(88, 48, 80, 40);
+        velocityArrow1.setStroke(AppTheme.ICON_DARK);
+        velocityArrow1.setStrokeWidth(3);
+        Line velocityArrow2 = new Line(88, 48, 80, 56);
+        velocityArrow2.setStroke(AppTheme.ICON_DARK);
+        velocityArrow2.setStrokeWidth(3);
+
+        // Acceleration arrow (up-right)
+        Line accelLine = new Line(50, 48, 70, 28);
+        accelLine.setStroke(AppTheme.ICON_MID);
+        accelLine.setStrokeWidth(2);
+        Line accelArrow1 = new Line(70, 28, 62, 26);
+        accelArrow1.setStroke(AppTheme.ICON_MID);
+        accelArrow1.setStrokeWidth(2);
+        Line accelArrow2 = new Line(70, 28, 68, 34);
+        accelArrow2.setStroke(AppTheme.ICON_MID);
+        accelArrow2.setStrokeWidth(2);
+
+        // Ground line
+        Line ground = new Line(18, 72, 102, 72);
+        ground.setStroke(Color.web("#2b3440"));
+        ground.setStrokeWidth(3);
+
+        return new StackPane(new Group(ground, ball, velocityLine, velocityArrow1, velocityArrow2, accelLine, accelArrow1, accelArrow2));
     }
 }

@@ -1,6 +1,7 @@
 package com.physicssim.views;
 
 import com.physicssim.features.mechanics.MechanicsElasticityView;
+import com.physicssim.features.kinematics.KinematicsView;
 import com.physicssim.components.PhysicsButton;
 import com.physicssim.features.pendulum.PendulumSimulationView;
 import com.physicssim.features.electricity.CurrentElectricityView;
@@ -83,6 +84,13 @@ public class SimulationsView extends BorderPane {
             return;
         }
 
+        if (item.getType() == SimulationType.KINEMATICS) {
+            hideSectionHeader();
+            contentHost.setTop(null);
+            contentHost.setCenter(buildSimulationPage(new KinematicsView()));
+            return;
+        }
+
         if (item.getType() == SimulationType.ELECTRICITY) {
             hideSectionHeader();
             contentHost.setTop(null);
@@ -116,7 +124,7 @@ public class SimulationsView extends BorderPane {
     }
 
     private HBox createBackBar() {
-        PhysicsButton backButton = new PhysicsButton("Back to all simulations" , PhysicsButton.Style.TEXT_ONLY);
+        PhysicsButton backButton = new PhysicsButton("Back to all simulations", PhysicsButton.Style.TEXT_ONLY);
         backButton.setFont(AppTheme.cardNumberFont());
         backButton.setTextFill(AppTheme.SURFACE);
         backButton.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.web("#3157d5"), new CornerRadii(12), Insets.EMPTY)));
