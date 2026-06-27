@@ -5,6 +5,7 @@ import com.physicssim.features.kinematics.KinematicsView;
 import com.physicssim.components.PhysicsButton;
 import com.physicssim.features.pendulum.PendulumSimulationView;
 import com.physicssim.features.electricity.CurrentElectricityView;
+import com.physicssim.features.vector.VectorAdditionView;
 import com.physicssim.features.simulations.SimulationFeatureCard;
 import com.physicssim.model.SimulationCatalog;
 import com.physicssim.model.SimulationItem;
@@ -95,6 +96,13 @@ public class SimulationsView extends BorderPane {
             hideSectionHeader();
             contentHost.setTop(null);
             contentHost.setCenter(buildSimulationPage(new CurrentElectricityView()));
+            return;
+        }
+
+        if (item.getType() == SimulationType.VECTOR) {
+            hideSectionHeader();
+            contentHost.setTop(null);
+            contentHost.setCenter(buildSimulationPage(new VectorAdditionView()));
             return;
         }
 
