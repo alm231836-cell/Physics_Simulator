@@ -4,8 +4,12 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polyline;
@@ -19,6 +23,7 @@ public class PendulumCanvas extends Pane {
     private final Rectangle supportBeam = new Rectangle();
     private final Line rod = new Line();
     private final Circle pivot = new Circle(7, Color.web("#1d4ed8"));
+    private final Circle bobGlow = new Circle();
     private final Circle bob = new Circle();
     private final Polyline trail = new Polyline();
     private final Group grid = new Group();
@@ -26,6 +31,7 @@ public class PendulumCanvas extends Pane {
     private final Line verticalAxis = new Line();
     private final Label pivotLabel = createOverlayLabel("Pivot");
     private final Label bobLabel = createOverlayLabel("Bob position");
+    private final Label sceneLabel = createOverlayLabel("Live swing");
     private final Deque<Double> trailPoints = new ArrayDeque<>();
 
     public PendulumCanvas(PendulumModel model) {
@@ -40,23 +46,29 @@ public class PendulumCanvas extends Pane {
 
         supportBeam.setArcWidth(14);
         supportBeam.setArcHeight(14);
-        supportBeam.setFill(Color.web("#6b7280"));
+        supportBeam.setFill(new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
+                new Stop(0, Color.web("#64748b")),
+                new Stop(1, Color.web("#94a3b8"))));
 
         rod.setStroke(Color.web("#3b82f6"));
         rod.setStrokeWidth(4);
 
+        bobGlow.setFill(Color.color(0.37, 0.51, 0.96, 0.16));
+        bobGlow.setEffect(new DropShadow(12, Color.color(0.11, 0.16, 0.24, 0.25)));
+
         bob.setFill(Color.web("#60a5fa"));
         bob.setStroke(Color.web("#1d4ed8"));
         bob.setStrokeWidth(3);
+        bob.setEffect(new DropShadow(8, Color.color(0.05, 0.11, 0.2, 0.25)));
 
         trail.setStroke(Color.web("#22c55e"));
         trail.setStrokeWidth(3);
-        trail.setOpacity(0.8);
+        trail.setOpacity(0.95);
 
         horizontalAxis.setStroke(Color.web("#9ca3af"));
         verticalAxis.setStroke(Color.web("#9ca3af"));
 
-        getChildren().addAll(grid, horizontalAxis, verticalAxis, supportBeam, trail, rod, pivot, bob, pivotLabel, bobLabel);
+        getChildren().addAll(grid, horizontalAxis, verticalAxis, supportBeam, trail, rod, pivot, bobGlow, bob, sceneLabel, pivotLabel, bobLabel);
         widthProperty().addListener((obs, oldVal, newVal) -> render());
         heightProperty().addListener((obs, oldVal, newVal) -> render());
         render();
@@ -101,6 +113,10 @@ public class PendulumCanvas extends Pane {
         pivot.setCenterX(pivotX);
         pivot.setCenterY(pivotY);
 
+        bobGlow.setRadius(model.getBobRadius() + 9);
+        bobGlow.setCenterX(bobX);
+        bobGlow.setCenterY(bobY);
+
         bob.setRadius(model.getBobRadius());
         bob.setCenterX(bobX);
         bob.setCenterY(bobY);
@@ -113,6 +129,7 @@ public class PendulumCanvas extends Pane {
         }
         trail.getPoints().setAll(trailPoints);
 
+        sceneLabel.relocate(24, 18);
         pivotLabel.relocate(pivotX + 10, pivotY - 20);
         bobLabel.relocate(bobX + 14, bobY - 7);
     }

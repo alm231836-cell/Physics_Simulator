@@ -41,13 +41,15 @@ public class PendulumChartCard extends VBox {
         getChildren().addAll(titleLabel, canvas);
         setSpacing(10);
         setPadding(new Insets(15));
-        setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(18), Insets.EMPTY)));
+        setBackground(new Background(new BackgroundFill(Color.web("#f8fbff"), new CornerRadii(18), Insets.EMPTY)));
         setBorder(new Border(new BorderStroke(
                 Color.web("#d9e2ee"),
                 BorderStrokeStyle.SOLID,
                 new CornerRadii(18),
                 new BorderWidths(1))));
-        setStyle("-fx-effect: dropshadow(gaussian, rgba(15, 23, 32, 0.08), 16, 0.18, 0, 6);");
+        setStyle("-fx-effect: dropshadow(gaussian, rgba(15, 23, 32, 0.08), 16, 0.18, 0, 6);"
+                + "-fx-background-radius: 18;"
+                + "-fx-border-radius: 18;");
     }
 
     public void plot(List<Double> values, Color lineColor) {

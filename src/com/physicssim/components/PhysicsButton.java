@@ -103,6 +103,7 @@ public class PhysicsButton extends Button {
                 new BorderWidths(1)
         )));
         button.setPadding(new Insets(12, 18, 12, 18));
+        button.setTextFill(Color.WHITE);
         return button;
     }
 }
