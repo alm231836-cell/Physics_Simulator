@@ -1,0 +1,9 @@
+/* Basic styling for Ohm's law view */
+.ohms-root {
+    -fx-font-family: Arial;
+}
+
+/* keep visual consistent with app theme */
+.ohms-canvas {
+    -fx-effect: dropshadow(gaussian, rgba(24,39,75,0.08), 12, 0.2, 0, 6);
+}

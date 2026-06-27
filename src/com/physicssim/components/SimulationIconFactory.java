@@ -20,6 +20,7 @@ public final class SimulationIconFactory {
             case MECHANICS -> createMechanicsIcon();
             case ORBIT -> createOrbitIcon();
             case ANALYTICS -> createChartIcon();
+            case ELECTRICITY -> createElectricityIcon();
         };
     }
 
@@ -115,5 +116,41 @@ public final class SimulationIconFactory {
         Circle p4 = new Circle(82, 32, 4.5, AppTheme.ICON_DARK);
 
         return new StackPane(new Group(yAxis, xAxis, trend, trend2, trend3, p1, p2, p3, p4));
+    }
+
+    private static StackPane createElectricityIcon() {
+        // simple battery + resistor icon
+        Line wire1 = new Line(18, 48, 36, 48);
+        wire1.setStroke(AppTheme.ICON_DARK);
+        wire1.setStrokeWidth(3);
+
+        // battery plates
+        Line plate1 = new Line(40, 36, 40, 60);
+        plate1.setStroke(AppTheme.ICON_MID);
+        plate1.setStrokeWidth(4);
+
+        Line plate2 = new Line(50, 42, 50, 54);
+        plate2.setStroke(AppTheme.ICON_MID);
+        plate2.setStrokeWidth(2);
+
+        // resistor as zig-zag (simplified)
+        Line r1 = new Line(56, 48, 64, 40);
+        r1.setStroke(AppTheme.ICON_MID);
+        r1.setStrokeWidth(3);
+        Line r2 = new Line(64, 40, 72, 56);
+        r2.setStroke(AppTheme.ICON_MID);
+        r2.setStrokeWidth(3);
+        Line r3 = new Line(72, 56, 80, 40);
+        r3.setStroke(AppTheme.ICON_MID);
+        r3.setStrokeWidth(3);
+
+        Line wire2 = new Line(80, 48, 96, 48);
+        wire2.setStroke(AppTheme.ICON_DARK);
+        wire2.setStrokeWidth(3);
+
+        Circle plus = new Circle(44, 28, 3, AppTheme.ICON_DARK);
+        Circle minus = new Circle(44, 76, 3, AppTheme.ICON_LIGHT);
+
+        return new StackPane(new Group(wire1, plate1, plate2, r1, r2, r3, wire2, plus, minus));
     }
 }

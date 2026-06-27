@@ -37,12 +37,6 @@ public class PhysicsButton extends Button {
 
         getStyleClass().add("physics-button");
 
-        String css = "/resources/style/css/PhysicsButton.css";
-
-        if (!getStylesheets().contains(css)) {
-            getStylesheets().add(css);
-        }
-
         switch (style) {
 
             case TEXT_ONLY -> setText(text);

@@ -4,5 +4,6 @@ public enum SimulationType {
     PENDULUM,
     MECHANICS,
     ORBIT,
-    ANALYTICS
+    ANALYTICS,
+    ELECTRICITY
 }
