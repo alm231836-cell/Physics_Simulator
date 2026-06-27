@@ -3,6 +3,7 @@ package com.physicssim.features.pendulum;
 public class PendulumModel {
 
     private static final double PIXELS_PER_METER = 110.0;
+    private static final double MAX_STABLE_STEP_SECONDS = 1.0 / 240.0;
 
     private double lengthMeters;
     private double gravity;
@@ -18,7 +19,23 @@ public class PendulumModel {
     }
 
     public void update(double deltaSeconds) {
+        if (deltaSeconds <= 0 || lengthMeters <= 0 || gravity <= 0) {
+            return;
+        }
+
+        int steps = Math.max(1, (int) Math.ceil(deltaSeconds / MAX_STABLE_STEP_SECONDS));
+        double stepSeconds = deltaSeconds / steps;
+
+        for (int i = 0; i < steps; i++) {
+            step(stepSeconds);
+        }
+    }
+
+    private void step(double deltaSeconds) {
         double angularAcceleration = -(gravity / lengthMeters) * Math.sin(angle);
+
+        // Semi-implicit Euler is much more stable for oscillators than
+        // updating position from the previous-frame velocity.
         angularVelocity += angularAcceleration * deltaSeconds;
         angle += angularVelocity * deltaSeconds;
     }
