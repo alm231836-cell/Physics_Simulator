@@ -72,12 +72,13 @@ public class PendulumSimulationView extends BorderPane {
                 + "-fx-border-radius: 18;"
                 + "-fx-effect: dropshadow(gaussian, rgba(15, 23, 32, 0.08), 18, 0.18, 0, 6);");
 
-        HBox topRow = new HBox(17, controlPanel, simulationBoard);
+        VBox metricsCard = buildMetricsCard();
+
+        HBox topRow = new HBox(17, controlPanel, simulationBoard, metricsCard);
         HBox.setHgrow(simulationBoard, Priority.ALWAYS);
         topRow.setAlignment(Pos.TOP_LEFT);
 
-        VBox metricsCard = buildMetricsCard();
-        HBox bottomRow = new HBox(17, metricsCard, angleChart, velocityChart);
+        HBox bottomRow = new HBox(17, angleChart, velocityChart);
         HBox.setHgrow(angleChart, Priority.ALWAYS);
         HBox.setHgrow(velocityChart, Priority.ALWAYS);
 
@@ -146,8 +147,8 @@ public class PendulumSimulationView extends BorderPane {
                 metricRow("Current Velocity", currentVelocityValueLabel),
                 metricRow("Position", positionValueLabel));
         card.setPadding(new Insets(15));
-        card.setPrefWidth(205);
-        card.setBackground(new Background(new BackgroundFill(Color.web("#062f65"), new CornerRadii(18), Insets.EMPTY)));
+        card.setPrefWidth(350);
+        card.setBackground(new Background(new BackgroundFill(Color.web("#0f2b4f"), new CornerRadii(18), Insets.EMPTY)));
         card.setStyle("-fx-border-color: #d9e2ee;"
                 + "-fx-border-radius: 18;"
                 + "-fx-effect: dropshadow(gaussian, rgba(15, 23, 32, 0.08), 16, 0.18, 0, 6);");
@@ -166,7 +167,7 @@ public class PendulumSimulationView extends BorderPane {
     private Label metricValueLabel() {
         Label label = new Label();
         label.setTextFill(Color.BLACK);
-        label.setStyle("-fx-font-size: 12px; -fx-font-weight: 700;");
+        label.setStyle("-fx-font-size: 8px; -fx-font-weight: 700;");
         return label;
     }
 
